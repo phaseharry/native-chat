@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import { socket } from '../index'
+import { socket } from '../index'
 
 //action types 
 const LOAD_MESSAGES = 'LOAD_MESSAGES'
@@ -28,7 +28,7 @@ export const postMessage = (message) => {
     try {
       const response = await axios.post('https://voice21.herokuapp.com/api/messages/', { message, userId: auth._id })
       dispatch(_writeMessage(response.data))
-      // socket.emit('new-message', response.data)
+      socket.emit('new-message', response.data)
     } catch(err){
       console.log(err)
     }
